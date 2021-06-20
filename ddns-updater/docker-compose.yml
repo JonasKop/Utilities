@@ -1,0 +1,8 @@
+version: "3.0"
+services:
+  ddns:
+    image: jonaskop/ddns-updater
+    environment:
+      GIT_USER: $GIT_USER
+      GIT_PASSWORD: $GIT_PASSWORD
+      GIT_REPOSITORY: $GIT_REPOSITORY
