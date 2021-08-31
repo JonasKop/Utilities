@@ -2,6 +2,10 @@
 
 myip=$(curl -s "https://api.ipify.org")
 
+if [ -z "$myip" ]; then
+    exit 0
+fi
+
 git clone "https://$GIT_USER:$GIT_PASSWORD@$GIT_REPOSITORY" repo
 git config --global user.email "bot@ddns.com"
 git config --global user.name "DDNS bot"
@@ -18,6 +22,6 @@ if ! grep -Fxq "$desiredline" terraform.tfvars; then
     git add terraform.tfvars
     git commit -m "[DDNS-bot] Updating Jonas home ip"
     git push
-else 
+else
     echo "Nothing to do..."
 fi
