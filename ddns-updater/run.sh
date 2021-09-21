@@ -2,8 +2,11 @@
 
 myip=$(curl -s "https://api.ipify.org")
 
-if [ -z "$myip" ]; then
-    exit 0
+if [[ $myip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+  echo "got ip $myip"
+else
+  echo "fail"
+  exit 0
 fi
 
 git clone "https://$GIT_USER:$GIT_PASSWORD@$GIT_REPOSITORY" repo
